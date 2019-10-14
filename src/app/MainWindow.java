@@ -12,37 +12,10 @@ public class MainWindow extends JFrame {
     public MainWindow() {
         super("MainWindow");
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setSize(300, 300);
+        this.setSize(Config.WindowX, Config.WindowY);
         this.setVisible(true);
 
         Global = this;
-        this.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent me) {
-                onMouseClick();
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-            }
-        });
-    }
-
-    public void onMouseClick() {
-        removeAll();
-        repaint();
     }
 
     public MainWindow(Flock f) {
@@ -52,7 +25,12 @@ public class MainWindow extends JFrame {
 
     @Override
     public void paint(Graphics g) {
-        this.birdsRenderer.Render(g);
+        g.translate(this.getWidth() / 2, this.getHeight() / 2);
 
+        g.setColor(new Color(0,0,0));
+        g.drawLine(-150, 0, 150, 0);
+        g.drawLine(0, 150, 0, -150);
+
+        this.birdsRenderer.Render(g);
     }
 }
